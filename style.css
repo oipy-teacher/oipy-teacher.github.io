@@ -68,6 +68,11 @@ a:focus-visible{outline:4px solid var(--orange);outline-offset:3px}
 .item:hover .go::after{transform:translateX(4px)}
 .item:active{transform:translateY(2px)}
 
+/* 止めている道具（押せない・ハンコだけ） */
+.item.paused{background:var(--cream);color:#7d766d;cursor:not-allowed}
+.item.paused h3{text-decoration:line-through;text-decoration-thickness:2px}
+.stamp{align-self:flex-start;font-weight:900;font-size:15px;letter-spacing:.1em;color:#B5452F;border:3px solid #B5452F;border-radius:4px;padding:2px 12px;transform:rotate(-6deg);margin-top:2px}
+
 /* コマが順に置かれていく（動きを減らす設定の人には出さない） */
 @media (prefers-reduced-motion:no-preference){
   .enter{animation:enter .55s cubic-bezier(.2,.7,.3,1) both;animation-delay:calc(var(--n,0)*90ms)}
