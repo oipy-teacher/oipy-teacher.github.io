@@ -1,22 +1,95 @@
-:root{--ink:#1f2328;--paper:#f7f3ea;--line:#1f2328}
+/* 授業と学校の道具箱 ── 絵：均一な細線の人（線の太さが一定・平塗り4色）。
+   ページも同じ文法で組む：枠線は絵の線と同じ一定の太さ、色は絵の4色だけ。
+   覚えてもらう1点 ＝ 漫画のコマと「語りの箱」（コマの角に置く説明の箱） */
+:root{
+  --ink:#26221E; --cream:#F2E8D5; --paper:#FBF6EC;
+  --teal:#3E7C7A; --orange:#E39A4C; --grey:#8A9BAA;
+  --line:2.5px; --gut:16px;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;-webkit-text-size-adjust:100%}
-.wrap{max-width:880px;margin:0 auto;padding:40px 20px 60px}
-header h1{font-size:clamp(26px,5vw,40px);margin:0 0 6px;letter-spacing:.06em}
-header p{margin:0;color:#5b5f66;font-size:14px}
-.back{display:inline-block;margin-bottom:18px;color:var(--ink);font-size:15px;text-decoration:none;border-bottom:1px solid}
-.shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:30px}
-.card{display:flex;flex-direction:column;justify-content:space-between;min-height:200px;padding:22px;border:2.5px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:6px 6px 0 var(--line);transition:transform .12s,box-shadow .12s;touch-action:manipulation}
-.card:active,.card:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--line)}
-.card .ic{font-size:44px;line-height:1}
-.card b{display:block;font-size:24px;margin-top:14px;letter-spacing:.04em}
-.card span{display:block;font-size:13px;color:#555;margin-top:6px;line-height:1.6}
-.card .go{font-size:13px;font-weight:bold;margin-top:14px}
-.rika{background:#e6f1e4}.gaku{background:#fbe9d6}.kou{background:#e3e9f4}
-h2{font-size:18px;margin:34px 0 0;padding-left:10px;border-left:6px solid var(--line)}
-.list{display:grid;gap:14px;margin-top:16px}
-.list .card{min-height:0;flex-direction:row;justify-content:flex-start;align-items:center;gap:16px;padding:16px 18px;box-shadow:4px 4px 0 var(--line)}
-.list .card .ic{font-size:34px}
-.list .card b{margin:0;font-size:19px}
-.list .card span{margin-top:3px}
-footer{margin-top:44px;font-size:12px;color:#6b6f76;line-height:1.7}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--display);font-weight:500;line-height:1.7}
+a{color:inherit}
+img{display:block;max-width:100%}
+.page{max-width:1180px;margin:0 auto;padding:28px 24px 40px}
+
+/* コマ */
+.panel{position:relative;border:var(--line) solid var(--ink);background:var(--paper);overflow:hidden}
+.panel img{width:100%;height:100%;object-fit:cover}
+
+/* 語りの箱 */
+.cap{background:var(--paper);border:var(--line) solid var(--ink);padding:18px 22px}
+
+/* ── トップ：大きなコマ ── */
+.hero{aspect-ratio:2.4/1}
+.hero .cap{position:absolute;left:28px;top:28px;max-width:46%}
+.hero h1{margin:0;font-weight:900;font-size:clamp(34px,5.2vw,64px);line-height:1.12;letter-spacing:.02em}
+.hero h1 span{display:block}
+.hero p{margin:12px 0 0;font-size:15px;line-height:1.75}
+.hero p b{font-weight:700;background:linear-gradient(transparent 62%,var(--orange) 62%)}
+
+/* ── トップ：入口の3コマ ── */
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut);margin-top:var(--gut)}
+.door{display:flex;flex-direction:column;text-decoration:none;transition:transform .18s}
+.door .pic{aspect-ratio:4/3;border-bottom:var(--line) solid var(--ink);overflow:hidden}
+.door .pic img{transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.door .txt{padding:16px 20px 18px;display:flex;flex-direction:column;flex:1}
+.door h2{margin:0;font-weight:900;font-size:clamp(22px,2.4vw,28px);letter-spacing:.04em;line-height:1.3}
+.door p{margin:6px 0 14px;font-size:14px;color:#4a4540;flex:1}
+.go{align-self:flex-start;font-weight:700;font-size:14px;color:var(--paper);background:var(--teal);border:var(--line) solid var(--ink);padding:4px 14px 5px;transition:background .18s}
+.go::after{content:"→";display:inline-block;margin-left:.4em;transition:transform .18s}
+.door:hover .pic img{transform:scale(1.04)}
+.door:hover .go{background:var(--orange);color:var(--ink)}
+.door:hover .go::after{transform:translateX(4px)}
+.door:active{transform:translateY(2px)}
+a:focus-visible{outline:4px solid var(--orange);outline-offset:3px}
+
+/* ── 下の語りの箱 ── */
+.foot{margin-top:var(--gut);display:flex;gap:var(--gut);align-items:stretch}
+.foot .cap{flex:1;font-size:13px;line-height:1.8}
+.foot .cap b{font-weight:700}
+.foot .mark{flex:0 0 auto;display:flex;align-items:center;padding:0 22px;background:var(--ink);color:var(--cream);font-weight:900;letter-spacing:.12em;font-size:13px;border:var(--line) solid var(--ink)}
+
+/* ── 下の階のページ ── */
+.back{display:inline-block;margin-bottom:var(--gut);text-decoration:none;font-weight:700;font-size:14px;border:var(--line) solid var(--ink);background:var(--paper);padding:5px 14px}
+.back:hover{background:var(--orange)}
+.sub-hero{aspect-ratio:3.2/1}
+.sub-hero .cap{position:absolute;left:24px;bottom:24px}
+.sub-hero h1{margin:0;font-weight:900;font-size:clamp(28px,4vw,46px);line-height:1.15}
+.sub-hero p{margin:6px 0 0;font-size:14px}
+.group{margin-top:28px}
+.label{display:inline-block;background:var(--ink);color:var(--cream);font-weight:900;font-size:14px;letter-spacing:.2em;padding:4px 12px 4px 14px}
+.items{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gut);margin-top:10px}
+.item{display:flex;flex-direction:column;text-decoration:none;padding:18px 20px;transition:transform .18s}
+.item h3{margin:0;font-weight:900;font-size:22px;letter-spacing:.03em;line-height:1.35}
+.item p{margin:6px 0 14px;font-size:14px;color:#4a4540;flex:1}
+.item:hover .go{background:var(--orange);color:var(--ink)}
+.item:hover .go::after{transform:translateX(4px)}
+.item:active{transform:translateY(2px)}
+
+/* コマが順に置かれていく（動きを減らす設定の人には出さない） */
+@media (prefers-reduced-motion:no-preference){
+  .enter{animation:enter .55s cubic-bezier(.2,.7,.3,1) both;animation-delay:calc(var(--n,0)*90ms)}
+  @keyframes enter{from{opacity:0;transform:translateY(14px)}}
+}
+
+/* スマホ */
+@media (max-width:760px){
+  .page{padding:16px 14px 28px}
+  :root{--gut:12px}
+  .hero{aspect-ratio:auto}
+  .hero img{aspect-ratio:16/9;object-position:72% 50%;border-bottom:var(--line) solid var(--ink)}
+  .hero .cap{position:static;max-width:none;border:0}
+  .doors{grid-template-columns:1fr}
+  .door{flex-direction:row}
+  .door .pic{flex:0 0 40%;aspect-ratio:auto;border-bottom:0;border-right:var(--line) solid var(--ink)}
+  .door .txt{padding:12px 14px}
+  .door p{margin:4px 0 10px;font-size:13px}
+  .foot{flex-direction:column}
+  .foot .mark{padding:10px 16px}
+  .sub-hero{aspect-ratio:auto}
+  .sub-hero img{aspect-ratio:2/1;border-bottom:var(--line) solid var(--ink)}
+  .sub-hero .cap{position:static;border:0}
+  .items{grid-template-columns:1fr}
+}
