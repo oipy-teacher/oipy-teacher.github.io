@@ -73,6 +73,19 @@ a:focus-visible{outline:4px solid var(--orange);outline-offset:3px}
 .item.paused h3{text-decoration:line-through;text-decoration-thickness:2px}
 .stamp{align-self:flex-start;font-weight:900;font-size:15px;letter-spacing:.1em;color:#B5452F;border:3px solid #B5452F;border-radius:4px;padding:2px 12px;transform:rotate(-6deg);margin-top:2px}
 
+/* ── その他（保管庫の置き場・下の方に小さく） ── */
+.etc{margin-top:calc(var(--gut)*2)}
+.etc .cap{margin-top:8px;padding:12px 18px 14px;font-size:13px;line-height:1.7;background:var(--cream)}
+.etc h2{margin:0 0 6px;font-weight:900;font-size:15px;letter-spacing:.04em}
+.etc h2 small{font-weight:500;font-size:12px;color:#6b655d;margin-left:.6em;letter-spacing:0}
+.etc dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline}
+.etc dt{font-weight:700;font-size:12px;color:#4a4540}
+.etc dd{margin:0;display:flex;flex-wrap:wrap;gap:4px 14px}
+.etc dd a{text-decoration:underline;text-decoration-color:var(--teal);text-underline-offset:3px;text-decoration-thickness:1.5px}
+.etc dd a::after{content:"↓";margin-left:.2em;font-size:11px;color:var(--teal)}
+.etc dd a:hover{background:linear-gradient(transparent 60%,var(--orange) 60%)}
+@media (max-width:760px){.etc dl{grid-template-columns:1fr;gap:2px}.etc dd{margin-bottom:6px}.etc dd a{padding:4px 0}}
+
 /* コマが順に置かれていく（動きを減らす設定の人には出さない） */
 @media (prefers-reduced-motion:no-preference){
   .enter{animation:enter .55s cubic-bezier(.2,.7,.3,1) both;animation-delay:calc(var(--n,0)*90ms)}
